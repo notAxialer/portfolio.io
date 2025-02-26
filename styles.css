@@ -1,0 +1,658 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    overflow: hidden;
+    height: 100vh;
+    --x: 50%;
+    --y: 50%;
+}
+
+.wireframe {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('background_2.jpg');
+    background-size: 200% 200%;
+    background-position: var(--x) var(--y);
+    transition: background-position 0.1s ease-out;
+    will-change: background-position;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.wireframe::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('background_2.jpg');
+    background-size: cover;
+    background-position: var(--x) var(--y);
+    z-index: -1;
+    will-change: transform;
+    transition: transform 0.1s ease-out;
+    pointer-events: none;
+}
+
+body {
+    perspective: 1px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.parallax-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateZ(-1px) scale(2);
+    background-image: url('background_2.jpg');
+    background-size: cover;
+    background-position: var(--x) var(--y);
+    z-index: -2;
+    transition: background-position 0.1s ease-out;
+    pointer-events: none;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('background_2.jpg');
+    background-size: cover;
+    background-position: var(--x) var(--y);
+    z-index: -3;
+    transition: background-position 0.1s ease-out;
+    pointer-events: none;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-panel {
+    position: relative;
+    width: 85%;
+    height: 90vh;
+    max-width: 1200px;
+    aspect-ratio: 1.4;
+    /* Золотое сечение */
+    max-height: 90vh;
+    min-height: 500px;
+    min-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.rectangle-1 {
+    position: relative;
+    width: calc(100% - 80px);
+    /* Учитываем ширину navigation-block */
+    height: 100%;
+    background: #424242;
+    border-radius: 25px;
+    display: flex;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    /* Было 20px */
+    padding: 30px;
+    /* Было 20px */
+    width: 400px;
+    /* Было 350px */
+    height: 100%;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 180px;
+    /* Было 150px */
+    height: 180px;
+    /* Было 150px */
+    background: #808080;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.name,
+.profession {
+    color: white;
+    font-size: 24px;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.contact-buttons button,
+.nav-button {
+    width: 64px;
+    /* Было 56px */
+    height: 64px;
+    /* Было 56px */
+    background: #808080;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+}
+
+.contact-buttons button i,
+.nav-button i {
+    font-size: 24px;
+    color: #ffffff;
+}
+
+iframe {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.rectangle-2 {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background: #1C1C1C;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.navigation-block {
+    width: 46px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation-bar {
+    width: 100%;
+    height: 35%;
+    background: #424242;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.nav-button {
+    width: 80%;
+    height: 20%;
+    border-radius: 4px;
+    background-color: transparent;
+    /* Прозрачный фон */
+    border: none;
+    /* Убрать обводку */
+    color: transparent;
+    /* Сделать текст прозрачным */
+    cursor: default;
+}
+
+.rectangle-2 iframe {
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    overflow: auto;
+    border-radius: 25px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(33, 33, 33, 0.7) rgba(192, 192, 192, 0.3);
+}
+
+/* Градиент на странице */
+.gradient-top,
+.gradient-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 50px;
+    /* Высота градиентов */
+    pointer-events: none;
+    /* Градиенты не должны мешать кликам по iframe */
+}
+
+.gradient-top {
+    top: 0;
+    /* Сверху */
+    background: linear-gradient(to bottom, rgba(28, 28, 28, 1), rgba(28, 28, 28, 0));
+    /* Темный градиент сверху */
+    z-index: 2;
+    /* На переднем плане */
+}
+
+.gradient-bottom {
+    bottom: 0;
+    /* Снизу */
+    background: linear-gradient(to top, rgba(28, 28, 28, 1), rgba(28, 28, 28, 0));
+    /* Темный градиент снизу */
+    z-index: 2;
+    /* На переднем плане */
+}
+
+
+/* Параллакс-эффект активен на всем экране */
+html,
+body,
+.content,
+.center-panel,
+.rectangle-1,
+.rectangle-2,
+.rectangle-2,
+iframe {
+    pointer-events: auto;
+}
+
+.wireframe,
+.parallax-layer,
+body::before {
+    pointer-events: none;
+}
+
+.rectangle-2,
+iframe {
+    pointer-events: none;
+}
+
+.rectangle-2 *,
+iframe * {
+    pointer-events: auto;
+}
+
+/* кнопки */
+.github-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #333;
+    border-radius: 12px;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.github-button:hover {
+    background-color: #2b2b2b;
+    transform: translateY(-3px);
+}
+
+.github-button:active {
+    transform: translateY(0);
+}
+
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #063;
+    border-radius: 12px;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.whatsapp-button:hover {
+    background-color: #202d32;
+    color: #24c460;
+    transform: translateY(-3px);
+}
+
+.whatsapp-button:active {
+    transform: translateY(0);
+}
+
+/* ---- АДАПТАЦИЯ ---- */
+
+/* Адаптация соотношения сторон */
+@media (max-aspect-ratio: 1/1) {
+    .center-panel {
+        aspect-ratio: 0.8;
+        max-width: 95vw;
+        min-width: unset;
+    }
+}
+
+@media (min-width: 1920px) and (min-aspect-ratio: 16/9) {
+    .center-panel {
+        aspect-ratio: 2/1;
+        max-width: 1800px;
+    }
+}
+
+@media (max-width: 1366px) {
+    .center-panel {
+        aspect-ratio: 1.2;
+        min-height: 600px;
+    }
+}
+
+/* Для вертикальных экранов */
+@media (max-height: 700px) {
+    .center-panel {
+        aspect-ratio: 0.7;
+        max-height: 95vh;
+    }
+}
+
+.rectangle-1 {
+    width: calc(100% - 70px);
+    height: 100%;
+    border-radius: 30px;
+}
+
+.left-panel {
+    width: min(400px, 30%);
+    padding: 2.5vh 2vw;
+}
+
+/* Оптимизация аватара */
+.avatar {
+    width: min(180px, 20vh);
+    height: min(180px, 20vh);
+}
+
+/* Адаптивные шрифты */
+.name,
+.profession {
+    font-size: clamp(18px, 2vh + 1vw, 24px);
+}
+
+/* Респонсивные кнопки */
+.contact-buttons button,
+.nav-button {
+    width: clamp(48px, 6vh, 64px);
+    height: clamp(48px, 6vh, 64px);
+}
+
+/* Для больших экранов */
+@media (min-width: 2000px) {
+    .center-panel {
+        aspect-ratio: 21/9;
+        max-width: 2000px;
+    }
+
+    .left-panel {
+        width: 500px;
+    }
+
+    .avatar {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+/* Для маленьких экранов */
+@media (max-width: 1280px) and (max-height: 800px) {
+    .center-panel {
+        aspect-ratio: 1;
+        max-height: 95vh;
+        min-height: 400px;
+    }
+
+    .left-panel {
+        width: 300px;
+        padding: 15px;
+    }
+}
+
+/* Скрываем мобильные элементы по умолчанию */
+.mobile-menu-toggle,
+.mobile-menu,
+.mobile-menu-overlay {
+    display: none;
+}
+
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    body.menu-open {
+        touch-action: none;
+        overflow: hidden;
+    }
+
+    .wireframe,
+    .content,
+    .center-panel,
+    .rectangle-1,
+    .rectangle-2 {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 0 !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        max-width: none !important;
+        max-height: none !important;
+    }
+
+    .rectangle-2 iframe {
+        height: 100vh !important;
+    }
+
+    .mobile-menu-toggle,
+    .mobile-menu,
+    .mobile-menu-overlay {
+        display: block;
+    }
+
+    .left-panel,
+    .navigation-block {
+        display: none !important;
+    }
+
+    .center-panel {
+        height: 100vh !important;
+    }
+
+    .mobile-menu-toggle {
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        z-index: 1000;
+        width: 48px;
+        height: 48px;
+        background: rgba(66, 66, 66, 0.9);
+        border-radius: 12px;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.2s ease, transform 0.3s ease;
+    }
+
+    .mobile-menu-toggle.active {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 90%;
+        max-width: 320px;
+        height: 100vh;
+        background: #424242;
+        z-index: 9999;
+        transition: transform 0.4s ease;
+        padding: 24px 18px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
+    }
+
+    .mobile-menu.active {
+        transform: translateX(100%);
+    }
+
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 9998;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s, visibility 0.4s;
+    }
+
+    .mobile-menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .mobile-menu-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .mobile-avatar {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .mobile-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .mobile-nav-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .mobile-nav-buttons .nav-button {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        height: 48px;
+        padding: 0 16px;
+        font-size: 16px;
+        color: white;
+        transition: background 0.3s ease;
+    }
+
+    .mobile-nav-buttons .nav-button:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .mobile-nav-buttons .nav-button i {
+        font-size: 20px;
+    }
+
+    .mobile-contact-buttons {
+        padding: 5% 0 10%;
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-contact-buttons a {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: background 0.3s ease;
+    }
+
+    .mobile-contact-buttons a:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Дополнительные адаптации под разные мобильные устройства */
+    @media (max-width: 480px) {
+        .mobile-menu {
+            width: 100%;
+            border-radius: 0;
+        }
+        .mobile-menu-toggle {
+            width: 40px;
+            height: 40px;
+        }
+        .mobile-nav-buttons .nav-button {
+            font-size: 14px;
+        }
+    }
+
+    @media (min-width: 481px) and (max-width: 768px) {
+        .mobile-menu {
+            width: 80%;
+        }
+    }
+}

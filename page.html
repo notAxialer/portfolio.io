@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Resume</title>
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            window.parent.postMessage({
+                type: 'mousemove',
+                x: e.clientX,
+                y: e.clientY
+            }, '*');
+        });
+    </script>
+    <script>
+        let timeout;
+        window.addEventListener('scroll', () => {
+            document.body.classList.add('scrolling');
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                document.body.classList.remove('scrolling');
+            }, 1000); // Скрыть через 1 секунду после остановки прокрутки
+        });
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            color: white;
+            background: transparent;
+            overflow-y: scroll;
+            transition: scrollbar-color 0.5s ease;
+        }
+
+        /* Скрытая полоса прокрутки по умолчанию */
+        ::-webkit-scrollbar {
+            width: 12px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+            margin: 20px 0;
+            border-radius: 12px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(63, 63, 63, 0.7);
+            border-radius: 12px;
+            height: 60px;
+            min-height: 40px;
+        }
+
+        /* Видимая полоса прокрутки при прокрутке */
+        body.scrolling ::-webkit-scrollbar {
+            opacity: 1;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .timeline .entry {
+            border-left: 2px solid #a259ff;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .timeline .entry::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            background-color: #a259ff;
+            border-radius: 50%;
+            position: absolute;
+            left: -7px;
+            top: 0;
+        }
+
+        .year {
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        .skill p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .progress {
+            background-color: #2d2f43;
+            border-radius: 10px;
+            height: 8px;
+            margin-top: 5px;
+        }
+
+        .progress .bar {
+            height: 100%;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        .progress.purple .bar {
+            background-color: #a259ff;
+        }
+
+        .knowledge .tags span {
+            background-color: #2d2f43;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-right: 10px;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            .timeline .entry {
+                padding-left: 15px;
+            }
+
+            .knowledge .tags span {
+                font-size: 12px;
+            }
+        }
+
+        /* Убираем pointer-events: none с элементов */
+        .wireframe,
+        .parallax-layer,
+        body::before {
+            pointer-events: none !important;
+        }
+
+        .rectangle-2,
+        iframe {
+            pointer-events: auto !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <section class="resume">
+            <h1>Resume</h1>
+            <div class="section">
+                <h2>Education</h2>
+                <div class="timeline">
+                    <div class="entry">
+                        <span class="year">2008</span>
+                        <h3>Frontend Development</h3>
+                        <p>University of Studies</p>
+                        <p>Maecenas finibus nec sem ut imperdiet. Ut tincidunt est ac dolor aliquam sodales.</p>
+                    </div>
+                    <div class="entry">
+                        <span class="year">2007</span>
+                        <h3>Graphic Design</h3>
+                        <p>University of Studies</p>
+                        <p>Aliquam tincidunt malesuada tortor vitae iaculis. In eu turpis iaculis, feugiat risus quis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Experience</h2>
+                <div class="timeline">
+                    <div class="entry">
+                        <span class="year">2016 - Current</span>
+                        <h3>Lead UI/UX Designer</h3>
+                        <p>Envato</p>
+                        <p>Praesent dignissim sollicitudin justo, sed elementum quam lacinia quis.</p>
+                    </div>
+                    <div class="entry">
+                        <span class="year">2013 - 2016</span>
+                        <h3>Senior UI/UX Designer</h3>
+                        <p>Envato</p>
+                        <p>Maecenas tempus faucibus rutrum. Proin vitae nulla et massa pretium.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section skills">
+                <h2>Design Skills</h2>
+                <div class="skill">
+                    <p>Web Design</p>
+                    <div class="progress">
+                        <div class="bar" style="width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <p>Print Design</p>
+                    <div class="progress">
+                        <div class="bar" style="width: 65%;"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <p>Logo Design</p>
+                    <div class="progress">
+                        <div class="bar" style="width: 80%;"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <p>Graphic Design</p>
+                    <div class="progress">
+                        <div class="bar" style="width: 90%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section skills">
+                <h2>Coding Skills</h2>
+                <div class="skill">
+                    <p>JavaScript</p>
+                    <div class="progress purple">
+                        <div class="bar" style="width: 95%;"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <p>PHP</p>
+                    <div class="progress purple">
+                        <div class="bar" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <p>HTML/CSS</p>
+                    <div class="progress purple">
+                        <div class="bar" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <p>Smarty/Twig</p>
+                    <div class="progress purple">
+                        <div class="bar" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <p>Perl</p>
+                    <div class="progress purple">
+                        <div class="bar" style="width: 90%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section knowledge">
+                <h2>Knowledges</h2>
+                <div class="tags">
+                    <span>Marketing</span>
+                    <span>Print</span>
+                    <span>Digital Design</span>
+                    <span>Social Media</span>
+                    <span>Time Management</span>
+                    <span>Communication</span>
+                    <span>Problem-Solving</span>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

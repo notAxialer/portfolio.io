@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        ::-webkit-scrollbar {
+            width: 12px;
+            /* более толстый ползунок */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(192, 192, 192, 0.1);
+            /* почти невидимая нижняя часть */
+            border-radius: 12px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(33, 33, 33, 0.5);
+            /* более прозрачный ползунок */
+            border-radius: 12px;
+            border: none;
+            /* без обводки */
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 40px 0;
+        }
+        h1, h2 {
+            color: #ffffff;
+        }
+        h1 span, h2 span {
+            color: #a259ff;
+        }
+        .info, .services {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .info div, .service-item {
+            flex: 1 1 45%;
+            min-width: 280px;
+        }
+        .info div p span {
+            color: #a259ff;
+            font-weight: 600;
+        }
+        .service-item {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .service-item i {
+            font-size: 40px;
+            color: #a259ff;
+            margin-bottom: 15px;
+        }
+        @media (max-width: 768px) {
+            .info, .services {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Test <span>3</span></h1>
+    </div>
+</body>
+</html>
