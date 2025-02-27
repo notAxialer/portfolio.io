@@ -553,7 +553,7 @@ iframe * {
     /* Контейнер для кнопок */
     .mobile-controls {
         position: fixed;
-        bottom: env(safe-area-inset-bottom, 20px);
+        bottom: env(safe-area-inset-bottom, 15%);
         right: 20px;
         z-index: 1000;
         display: flex;
@@ -561,7 +561,7 @@ iframe * {
         background: rgb(66 66 66 / 35%);
         border-radius: 50px;
         border: 4px solid #5148EE;
-        margin-bottom: 5%
+        margin-bottom: 10%
     }
 
     /* Общий стиль кнопок */
