@@ -553,11 +553,7 @@ iframe * {
     /* Контейнер для кнопок */
     .mobile-controls {
         position: fixed;
-<<<<<<< HEAD
         bottom: max(20px, env(safe-area-inset-bottom));
-=======
-        bottom: env(safe-area-inset-bottom, 30px);
->>>>>>> fe09be2228bcb03814410a8f56aa5f647e60efa5
         right: 20px;
         z-index: 1000;
         display: flex;
@@ -565,16 +561,12 @@ iframe * {
         background: rgb(66 66 66 / 35%);
         border-radius: 50px;
         border: 4px solid #5148EE;
-<<<<<<< HEAD
         margin-bottom: 10vh;
         transform: translateZ(0); /* Фикс для некоторых мобильных браузеров */
         box-sizing: border-box; /* Учет border в ширине */
         backdrop-filter: blur(5px); /* Улучшение видимости */
         transform: translateZ(0); /* Фикс для некоторых мобильных браузеров */
         box-sizing: border-box; /* Учет border в ширине */
-=======
-        margin-bottom: 15%;
->>>>>>> fe09be2228bcb03814410a8f56aa5f647e60efa5
     }
 
     /* Общий стиль кнопок */
