@@ -365,12 +365,17 @@ iframe * {
 }
 
 /* кнопки */
-.github-button {
+.whatsapp-button {
     color: white;
     font-size: 30px;
 }
 
-.whatsapp-button {
+.instagram-button {
+    color: white;
+    font-size: 30px;
+}
+
+.telegram-button {
     color: white;
     font-size: 30px;
 }
@@ -556,6 +561,7 @@ iframe * {
         background: rgb(66 66 66 / 35%);
         border-radius: 50px;
         border: 4px solid #5148EE;
+        margin-bottom: 5%
     }
 
     /* Общий стиль кнопок */
@@ -583,15 +589,17 @@ iframe * {
     /* Контейнер для выпадающего меню */
     .mobile-menu {
         position: absolute;
-        bottom: calc(100% + 15px); /* Позиция над кнопкой */
+        bottom: calc(100% + 15px);
+        /* Позиция над кнопкой */
         right: 0;
         opacity: 0;
         visibility: hidden;
         transform: translateY(20px);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        display: flex !important; /* Принудительно показываем при активном классе */
+        display: flex !important;
+        /* Принудительно показываем при активном классе */
     }
-    
+
     .mobile-menu.active {
         opacity: 1;
         visibility: visible;
@@ -602,12 +610,13 @@ iframe * {
         display: flex !important;
         flex-direction: column;
         gap: 10px;
-        background: rgb(66 66 66 / 35%);;
+        background: rgb(66 66 66 / 35%);
+        ;
         padding: 10px;
         border-radius: 36px;
         border: 2px solid #5148EE;
     }
-    
+
     .navigation-bar .nav-button {
         width: 30px;
         height: 40px;
@@ -617,17 +626,17 @@ iframe * {
         justify-content: center;
         transition: transform 0.2s, background 0.3s;
     }
-    
+
     .navigation-bar .nav-button:hover {
         transform: scale(1.1);
     }
-    
+
     .navigation-bar .nav-button i {
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     }
 
 
-    .nav-button-1{
+    .nav-button-1 {
         background-color: transparent;
         border: none;
         border-radius: 12px;
@@ -637,6 +646,7 @@ iframe * {
         padding: 0;
         cursor: pointer;
     }
+
     /* Кнопки внутри меню */
     .nav-button-1 {
         width: 40px;
@@ -648,7 +658,7 @@ iframe * {
         font-size: 18px;
     }
 
-    .nav-button-1-2{
+    .nav-button-1-2 {
         background-color: transparent;
         border: none;
         border-radius: 12px;
@@ -658,6 +668,7 @@ iframe * {
         padding: 0;
         cursor: pointer;
     }
+
     /* Кнопки внутри меню */
     .nav-button-1-2 {
         width: 40px;
