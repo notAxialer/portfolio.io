@@ -1,62 +1,118 @@
 document.addEventListener("DOMContentLoaded", () => {
+    let isTransitioning = false;
     const buttons = document.querySelectorAll('.nav-button');
+    const mobile_buttons = document.querySelectorAll('.nav-button-1');
+    const mobile_buttons_2 = document.querySelectorAll('.nav-button-1-2');
     const iframe = document.querySelector('.embedded-page');
+    const container = document.querySelector('.rectangle-2');
 
-    buttons.forEach(button => {
+    const pages = [
+        "page.html",
+        "page_2.html",
+        "page_3.html"
+    ];
+
+    let currentIndex = 0;
+
+    function updateActiveButtons(targetUrl) {
+        // Обновление кнопок для десктопной навигации
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+            const icon = btn.querySelector('i');
+            icon.style.color = '#FFFFFF';
+            if (btn.getAttribute('data-page') === targetUrl) {
+                btn.classList.add('active');
+                icon.style.color = '#a259ff';
+            }
+        });
+
+        // Обновление мобильных кнопок
+        [...mobile_buttons, ...mobile_buttons_2].forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-page') === targetUrl) {
+                btn.classList.add('active');
+            }
+        });
+    }
+
+    function updateIframe(page) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        // Определение целевой страницы
+        let targetIndex;
+        if (page === "next") {
+            targetIndex = Math.min(currentIndex + 1, pages.length - 1);
+        } else if (page === "prev") {
+            targetIndex = Math.max(currentIndex - 1, 0);
+        } else {
+            targetIndex = pages.indexOf(page);
+        }
+        
+        const targetUrl = pages[targetIndex];
+        if (targetIndex === -1) return;
+
+        // Запуск анимации исчезновения
+        container.classList.add('fade-out');
+
+        iframe.addEventListener('transitionend', function handler() {
+            iframe.removeEventListener('transitionend', handler);
+            
+            // Обновление индекса и загрузка новой страницы
+            currentIndex = targetIndex;
+            iframe.src = targetUrl;
+
+            iframe.addEventListener('load', function loadHandler() {
+                container.classList.remove('fade-out');
+                isTransitioning = false;
+                updateActiveButtons(targetUrl);
+            }, { once: true });
+        }, { once: true });
+    }
+
+    // Обработчик загрузки iframe для обновления активных кнопок
+    iframe.addEventListener('load', () => {
+        const currentUrl = iframe.contentWindow.location.pathname.split('/').pop(); // Получаем текущую страницу
+        updateActiveButtons(currentUrl);
+    });
+
+    // Обработчики событий для всех типов кнопок
+    [...buttons, ...mobile_buttons, ...mobile_buttons_2].forEach(button => {
         button.addEventListener('click', () => {
             const page = button.getAttribute('data-page');
             console.log(`Нажата кнопка для загрузки: ${page}`);
-            iframe.src = page;
-
-            // Удаляем класс активной кнопки у всех кнопок
-            buttons.forEach(btn => {
-                btn.classList.remove('active');
-                const icon = btn.querySelector('i');
-                icon.style.color = '#FFFFFF'; // Сбрасываем цвет иконки к изначальному
-            });
-
-            // Добавляем класс активной кнопки и меняем цвет иконки
-            button.classList.add('active');
-            const activeIcon = button.querySelector('i');
-            activeIcon.style.color = '#a259ff'; // Цвет активной иконки
+            updateIframe(page);
+            
+            // Закрытие мобильного меню
+            if (button.classList.contains('nav-button-1-2')) {
+                document.querySelector('.mobile-menu').classList.remove('active');
+            }
         });
     });
 
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    
-    function toggleMobileMenu() {
-        mobileMenu.classList.toggle('active');
-        mobileMenuOverlay.classList.toggle('active');
-        mobileMenuToggle.classList.toggle('active');
-        
-        if(mobileMenu.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-    }
-    
-    mobileMenuToggle.addEventListener('click', toggleMobileMenu);
-    mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
-    
-    // Закрытие меню при клике на пункт
-    document.querySelectorAll('.mobile-menu .nav-button').forEach(button => {
-        button.addEventListener('click', toggleMobileMenu);
-    });
-    
-    // Адаптация высоты iframe
+    // Остальной код остается без изменений
     function adjustIframeHeight() {
-        const iframe = document.querySelector('.rectangle-2 iframe');
-        if (window.innerWidth <= `768px`){
+        if (window.innerWidth <= 768) {
             iframe.style.height = `${window.innerHeight}px`;
         }
     }
-    
+
     window.addEventListener('resize', adjustIframeHeight);
     adjustIframeHeight();
+
+    document.querySelector('.mobile-menu-toggle').addEventListener('click', function (e) {
+        e.stopPropagation();
+        document.querySelector('.mobile-menu').classList.toggle('active');
+    });
+
+    document.addEventListener('click', function (e) {
+        const menu = document.querySelector('.mobile-menu');
+        if (!menu.contains(e.target) && !e.target.closest('.mobile-menu-toggle')) {
+            menu.classList.remove('active');
+        }
+    });
 });
+
 
 
 // Слушаем события мыши в родительском документе

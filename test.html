@@ -82,21 +82,6 @@
             gap: 40px;
             margin-bottom: 60px;
         }
-/*
-        .profile-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            overflow: hidden;
-            flex-shrink: 0;
-            margin-top: 10%;
-        }
-*/
-        .profile-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
 
         .profile-image {
             width: 300px;
@@ -150,22 +135,15 @@
             transition: all 0.3s ease;
         }
 
+        .btn-primary {
+            background: #a259ff;
+            color: white;
+        }
+
         .btn-secondary {
             border: 2px solid #a259ff;
             color: #a259ff;
-            transition: all 0.3s ease;
-            /* Плавное изменение всех свойств за 0.3 секунды */
         }
-
-        .btn-secondary:hover {
-            background-color: #a259ff;
-            /* Цвет фона при наведении */
-            color: white;
-            /* Цвет текста при наведении */
-            border-color: #8a39e3;
-            /* Изменение цвета границы при наведении */
-        }
-
 
         .services-grid {
             display: grid;
@@ -201,6 +179,14 @@
             .button-group {
                 flex-direction: column;
             }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        body.mobile-view .profile-section {
+            flex-direction: column;
         }
     </style>
 </head>
@@ -208,21 +194,20 @@
 <body>
     <div class="container">
         <section class="profile-section">
-            <div class="profile-container">
-                <div class="profile-image">
-                    <img src="./images/fitness.png" alt="Alex Smith">
-                </div>
+            <div class="profile-image">
+                <img src="./images/fitness.png" alt="Alex Smith">
             </div>
             <div class="profile-info">
                 <h1 class="profile-name">Alex Smith</h1>
                 <h2 class="profile-title">Web Designer</h2>
                 <p class="profile-bio">
-                    I am a Full-Stack Web Developer & Web Designer based in The USA, but working Worldwide.
-                    I am passionate about designing and developing user-friendly websites. I have all the
+                    I am a Full-Stack Web Developer & Web Designer based in The USA, but working Worldwide. 
+                    I am passionate about designing and developing user-friendly websites. I have all the 
                     skills to create a new high quality website or improve existing websites for individuals.
                 </p>
                 <div class="button-group">
-                    <a href="https://whatsapp.com/" class="btn btn-secondary">Contact</a>
+                    <a href="#" class="btn btn-primary">Download CV</a>
+                    <a href="#" class="btn btn-secondary">Contact</a>
                 </div>
             </div>
         </section>
