@@ -263,7 +263,7 @@ iframe {
 }
 
 .navigation-bar {
-    width: 120%;
+    width: 110%;
     height: 180px;
     background: #424242;
     border-radius: 20px;
@@ -553,7 +553,7 @@ iframe * {
     /* Контейнер для кнопок */
     .mobile-controls {
         position: fixed;
-        bottom: env(safe-area-inset-bottom, 20px);
+        bottom: max(20px, env(safe-area-inset-bottom));
         right: 20px;
         z-index: 1000;
         display: flex;
@@ -561,7 +561,12 @@ iframe * {
         background: rgb(66 66 66 / 35%);
         border-radius: 50px;
         border: 4px solid #5148EE;
-        margin-bottom: 5%
+        margin-bottom: 10vh;
+        transform: translateZ(0); /* Фикс для некоторых мобильных браузеров */
+        box-sizing: border-box; /* Учет border в ширине */
+        backdrop-filter: blur(5px); /* Улучшение видимости */
+        transform: translateZ(0); /* Фикс для некоторых мобильных браузеров */
+        box-sizing: border-box; /* Учет border в ширине */
     }
 
     /* Общий стиль кнопок */
@@ -598,6 +603,7 @@ iframe * {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex !important;
         /* Принудительно показываем при активном классе */
+        
     }
 
     .mobile-menu.active {
@@ -611,10 +617,10 @@ iframe * {
         flex-direction: column;
         gap: 10px;
         background: rgb(66 66 66 / 35%);
-        ;
         padding: 10px;
         border-radius: 36px;
         border: 2px solid #5148EE;
+
     }
 
     .navigation-bar .nav-button {
