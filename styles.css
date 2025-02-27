@@ -553,7 +553,7 @@ iframe * {
     /* Контейнер для кнопок */
     .mobile-controls {
         position: fixed;
-        bottom: 20px;
+        bottom: env(safe-area-inset-bottom, 20px);
         right: 20px;
         z-index: 1000;
         display: flex;
