@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
+    <title>Contact Me</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ВАШ_API_КЛЮЧ&lang=ru_RU" type="text/javascript"></script>
     <script>
         document.addEventListener('mousemove', (e) => {
             window.parent.postMessage({
@@ -23,6 +25,42 @@
                 document.body.classList.remove('scrolling');
             }, 1000); // Скрыть через 1 секунду после остановки прокрутки
         });
+    </script>
+    <script>
+        // Инициализация карты
+        ymaps.ready(init);
+
+        function init() {
+            var myMap = new ymaps.Map("map", {
+                center: [55.751574, 37.573856], // Координаты центра карты
+                zoom: 10 // Масштаб
+            });
+
+            // Добавляем метку
+            var myPlacemark = new ymaps.Placemark([55.751574, 37.573856], {
+                hintContent: 'Наше местоположение',
+                balloonContent: 'Приходите к нам в офис!'
+            });
+
+            myMap.geoObjects.add(myPlacemark);
+        }
+
+        // Обработка отправки формы
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            // Здесь можно добавить код для отправки данных формы
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+
+            console.log('Отправка данных:', data);
+
+            // Очистка формы после отправки
+            event.target.reset();
+            alert('Сообщение отправлено!');
+
+            return false;
+        }
     </script>
     <style>
         body {
@@ -59,31 +97,43 @@
         body.scrolling ::-webkit-scrollbar {
             opacity: 1;
         }
+
         .container {
-            width: 80%;
-            margin: auto;
-            padding: 40px 0;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
         }
-        h1, h2 {
+
+        h1,
+        h2 {
             color: #ffffff;
         }
-        h1 span, h2 span {
+
+        h1 span,
+        h2 span {
             color: #a259ff;
         }
-        .info, .services {
+
+        .info,
+        .services {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 30px;
         }
-        .info div, .service-item {
+
+        .info div,
+        .service-item {
             flex: 1 1 45%;
             min-width: 280px;
         }
+
         .info div p span {
             color: #a259ff;
             font-weight: 600;
         }
+
         .service-item {
             background-color: #1e1e1e;
             padding: 20px;
@@ -91,25 +141,227 @@
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .service-item i {
             font-size: 40px;
             color: #a259ff;
             margin-bottom: 15px;
         }
+
         @media (max-width: 768px) {
-            .info, .services {
+
+            .info,
+            .services {
                 flex-direction: column;
             }
+        }
+
+        .contact-section {
+            display: flex;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+        }
+
+        .contact-form {
+            flex: 1 1 50%;
+            min-width: 300px;
+            max-width: 500px;
+            padding: 25px;
+            background: #1e1e1e;
+            border-radius: 12px;
+        }
+
+        .map-container {
+            flex: 1 1 45%;
+            min-width: 300px;
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input,
+        textarea {
+            width: calc(100% - 24px);
+            /* Учитываем padding */
+            padding: 10px 12px;
+            margin-top: 6px;
+            box-sizing: content-box;
+            background: #2d2d2d;
+            border: 1px solid #3d3d3d;
+            border-radius: 8px;
+            color: white;
+            font-family: inherit;
+        }
+
+        textarea {
+            resize: none;
+            /* Запрещаем растягивание */
+            min-height: 120px;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: 2px solid #a259ff;
+        }
+
+        button {
+            background: #a259ff;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .form-icon {
+            color: #a259ff;
+            margin-right: 10px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .contact-section {
+                gap: 25px;
+            }
+
+            .contact-form,
+            .map-container {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+        }
+
+        /* Банер разработки */
+        .development-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            border-radius: 12px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .development-notice {
+            text-align: center;
+            color: white;
+            padding: 25px;
+            max-width: 80%;
+        }
+
+        .development-notice h3 {
+            font-size: 2em;
+            margin: 15px 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .development-notice p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .development-notice span {
+            font-size: 3em;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Для контейнера формы добавить position: relative */
+        .contact-form {
+            position: relative;
+            /* остальные стили остаются */
         }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div class="container">
-        <h1>Test <span>3</span></h1>
+        <h1><span>Контактная </span>информация</h1>
+
+        <div class="contact-section">
+            <form class="contact-form" action="mailto:your@email.com" method="POST" enctype="text/plain">
+                <div class="development-overlay">
+                    <div class="development-notice">
+                        <span>🚧</span>
+                        <h3>В разработке</h3>
+                        <p>Функционал скоро будет доступен</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-user form-icon"></i>Ваше имя</label>
+                    <input type="text" name="name" placeholder="Иван Иванов" required>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-envelope form-icon"></i>E-mail или телефон</label>
+                    <input type="text" name="contact" placeholder="example@mail.com или +7 900 000-00-00" required>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-comment form-icon"></i>Сообщение</label>
+                    <textarea name="message" placeholder="Напишите ваше сообщение..." required></textarea>
+                </div>
+
+                <button type="submit">Отправить сообщение</button>
+            </form>
+
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
     </div>
-    <footer style="text-align: center; padding: 20px; background: #1e1e1e; margin-top: 40px; color: #bbb; font-size: 0.9em; border-radius: 25px;">
-        <p>Сайт не собирает и не обрабатывает персональные данные. Однако, при переходе в мессенджеры могут применяться их собственные политики конфиденциальности.</p>
+
+    <footer
+        style="text-align: center; padding: 20px; background: #1e1e1e; margin-top: 40px; color: #bbb; font-size: 0.9em; border-radius: 25px;">
+        <p>Сайт не собирает и не обрабатывает персональные данные. Однако, при переходе в мессенджеры могут применяться
+            их собственные политики конфиденциальности.</p>
     </footer>
 </body>
+
 </html>

@@ -72,6 +72,7 @@
         h3 {
             color: white;
             margin-bottom: 10px;
+            font-size: 5vh;
         }
 
         .section {
@@ -111,6 +112,7 @@
             border-radius: 10px;
             height: 8px;
             margin-top: 5px;
+            margin-bottom: 10px;
         }
 
         .progress .bar {
@@ -158,32 +160,124 @@
         iframe {
             pointer-events: auto !important;
         }
+
+        /* Доп стили для "истории" */
+        .history-text {
+            column-gap: 40px;
+            line-height: 1.7;
+            margin-top: 20px;
+        }
+
+        .history-text p {
+            margin-bottom: 25px;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        @media (max-width: 768px) {
+            .history-text {
+                column-count: 1;
+            }
+
+            .history-text p {
+                text-align: center;
+                /* Центрируем текст на мобильных устройствах */
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <section class="resume">
-            <h1>Resume</h1>
             <div class="section">
-                <h2>Education</h2>
-                <div class="timeline">
-                    <div class="entry">
-                        <span class="year">2008</span>
-                        <h3>Frontend Development</h3>
-                        <p>University of Studies</p>
-                        <p>Maecenas finibus nec sem ut imperdiet. Ut tincidunt est ac dolor aliquam sodales.</p>
-                    </div>
-                    <div class="entry">
-                        <span class="year">2007</span>
-                        <h3>Graphic Design</h3>
-                        <p>University of Studies</p>
-                        <p>Aliquam tincidunt malesuada tortor vitae iaculis. In eu turpis iaculis, feugiat risus quis.
-                        </p>
+                <!-- Основной блок истории -->
+                <div class="section">
+                    <h1>История</h1>
+                    <div class="history-text">
+                        <p><strong style="font-size: 1.15em; color: #a259ff">От внешнего к внутреннему, или как я решил
+                                стать психологом будучи востребованным фитнес тренером</strong></p>
+                        <p>Для меня, как и для многих, фитнес был спасением от проблем. Меня покорил этот мир и я стал
+                            работать в этой сфере. На момент своего прихода я был полон надежд: физические тренировки
+                            должны были помочь мне справиться с внутренними переживаниями. И в самом начале всё шло
+                            отлично — результаты радовали, энергия прорывалась, казалось, что я на пути к
+                            самосовершенствованию.</p>
+
+                        <p>Но вскоре меня настигла неприятная правда — одного фитнеса недостаточно. Как только я
+                            оставался наедине с собой, старые привычки и паттерны вновь брали верх. Я оказался в том же
+                            самом месте, с которого начинал. Тут пришло осознание, что внешние изменения и не приводят к
+                            истинной трансформации.</p>
+
+                        <p style="margin-left: 30px; border-left: 3px solid #a259ff; padding-left: 15px;">Я понял, что
+                            нужно копнуть глубже.</p>
+
+                        <p>Так и начался мой путь в изучение психологии. Это стало не просто карьерным выбором, а
+                            настоящим откровением. В последствии я получил квалификацию психолога, начал исследовать
+                            корни своих зависимостей и страхов, раскопал истинные причины своих привычек.</p>
+
+                        <div style="background: #2d2f43; padding: 20px; border-radius: 12px; margin: 25px 0;">
+                            <p>Работа с тренером хоть и может принести успехи, но для долгосрочных результатов
+                                необходимы глубокие внутренние изменения.</p>
+                        </div>
+
+                        <p style="text-align: center; font-style: italic; font-size: 0.95em;">Если вы готовы к
+                            переменам, я здесь, чтобы помочь вам открыть себя заново!</p>
+
+                        <p style="text-align: right; font-weight: 500; color: #a259ff; margin-top: 30px;">И помните -
+                            меняется не тело, а сознание!</p>
                     </div>
                 </div>
-            </div>
 
+                <!-- Сохраняем только ключевые навыки -->
+                <div class="section skills">
+                    <h1>Ключевые навыки</h1>
+                    <div class="skill">
+                        <p>Психологическое консультирование</p>
+                        <div class="progress purple">
+                            <div class="bar" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <p>Когнитивно-поведенческая терапия</p>
+                        <div class="progress purple">
+                            <div class="bar" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <p>Работа с тревожностью</p>
+                        <div class="progress purple">
+                            <div class="bar" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <p>Психоэмоциональная регуляция</p>
+                        <div class="progress purple">
+                            <div class="bar" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <p>Работа с самооценкой</p>
+                        <div class="progress purple">
+                            <div class="bar" style="width: 88%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section knowledge">
+                    <h1>Компетенции</h1>
+                    <div class="tags">
+                        <span>Консультирование</span>
+                        <span>КПТ</span>
+                        <span>Тревожность</span>
+                        <span>Эмоции</span>
+                        <span>Самооценка</span>
+                        <span>Родители и дети</span>
+                        <span>Отношения</span>
+                    </div>
+                </div>
+        </section>
+    </div>
+    <!--
             <div class="section">
                 <h2>Experience</h2>
                 <div class="timeline">
@@ -276,10 +370,13 @@
                     <span>Problem-Solving</span>
                 </div>
             </div>
-        </section>
+-->
+    </section>
     </div>
-    <footer style="text-align: center; padding: 20px; background: #1e1e1e; margin-top: 40px; color: #bbb; font-size: 0.9em; border-radius: 25px;">
-        <p>Сайт не собирает и не обрабатывает персональные данные. Однако, при переходе в мессенджеры могут применяться их собственные политики конфиденциальности.</p>
+    <footer
+        style="text-align: center; padding: 20px; background: #1e1e1e; margin-top: 40px; color: #bbb; font-size: 0.9em; border-radius: 25px;">
+        <p>Сайт не собирает и не обрабатывает персональные данные. Однако, при переходе в мессенджеры могут применяться
+            их собственные политики конфиденциальности.</p>
     </footer>
 </body>
 

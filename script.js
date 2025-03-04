@@ -80,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
     [...buttons, ...mobile_buttons, ...mobile_buttons_2].forEach(button => {
         button.addEventListener('click', () => {
             const page = button.getAttribute('data-page');
-            console.log(`Нажата кнопка для загрузки: ${page}`);
             updateIframe(page);
             
             // Закрытие мобильного меню
