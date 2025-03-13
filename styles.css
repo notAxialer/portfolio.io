@@ -570,28 +570,21 @@ iframe * {
 
     /* Контейнер для кнопок */
     .mobile-controls {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        background: rgb(66 66 66 / 35%);
-        border-radius: 50px;
-        border: 4px solid #5148EE;
-        margin-bottom: 5vh;
-        backdrop-filter: blur(5px);
-        /* Улучшение видимости */
-        transform: translateZ(0);
-        /* Фикс для некоторых мобильных браузеров */
-        box-sizing: border-box;
-        /* Учет border в ширине */
-
-        /* Поддержка safe-area на iPhone и других устройствах с вырезами */
-        padding-bottom: env(safe-area-inset-bottom, 20px);
-        /* Добавляем fallback для старых устройств */
-    }
-
+    position: fixed;
+    bottom: calc(20px + env(safe-area-inset-bottom)); /* Динамический отступ */
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    background: rgb(66 66 66 / 35%);
+    border-radius: 50px;
+    border: 4px solid #5148EE;
+    margin-bottom: 0; /* Убрать vh-отступ */
+    backdrop-filter: blur(5px);
+    padding: 8px; /* Универсальный паддинг */
+    padding-bottom: calc(8px + env(safe-area-inset-bottom)); /* Безопасная зона */
+    box-sizing: border-box;
+}
     /* Общий стиль кнопок */
     .nav-button-1,
     .nav-button-1-2,
