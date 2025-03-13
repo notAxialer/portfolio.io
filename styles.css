@@ -570,23 +570,27 @@ iframe * {
 
     /* Контейнер для кнопок */
 .mobile-controls {
-    position: fixed;
-    bottom: calc(20px + env(safe-area-inset-bottom, 0)); 
-    right: 20px;
-    z-index: 9999;
-    display: flex;
-    gap: 12px;
-    background: rgb(66 66 66 / 35%);
-    border-radius: 50px;
-    border: 4px solid #5148EE;
-    backdrop-filter: blur(5px);
-    padding: 12px;
-    box-sizing: border-box;
-    /* Фикс для iOS */
-    margin-bottom: constant(safe-area-inset-bottom); /* Для старых iOS */
-    margin-bottom: env(safe-area-inset-bottom); /* Для новых iOS */
-    transform: translateZ(0);
-}
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        background: rgb(66 66 66 / 35%);
+        border-radius: 50px;
+        border: 4px solid #5148EE;
+        margin-bottom: 5vh;
+        backdrop-filter: blur(5px);
+        /* Улучшение видимости */
+        transform: translateZ(0);
+        /* Фикс для некоторых мобильных браузеров */
+        box-sizing: border-box;
+        /* Учет border в ширине */
+
+        /* Поддержка safe-area на iPhone и других устройствах с вырезами */
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+        /* Добавляем fallback для старых устройств */
+    }
     /* Общий стиль кнопок */
     .nav-button-1,
     .nav-button-1-2,
@@ -601,12 +605,6 @@ iframe * {
         color: white;
         cursor: pointer;
     }
-
-    @media (hover: none) and (max-width: 768px) {
-    .mobile-controls {
-        bottom: calc(20px + 60px); /* Резервный отступ для нижней панели */
-    }
-}
 
     /* Кнопка вызова меню */
     .mobile-menu-toggle {
