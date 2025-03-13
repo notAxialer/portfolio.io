@@ -589,21 +589,7 @@ iframe * {
 
         /* Поддержка safe-area на iPhone и других устройствах с вырезами */
         padding-bottom: env(safe-area-inset-bottom, 20px);
-        
-        /* Фикс для нижней панели Safari */
-        margin-bottom: 0 !important;
-        padding-bottom: calc(14px + env(safe-area-inset-bottom, 20px));
     }
-    @media (max-width: 768px) {
-    body {
-        padding-bottom: 100px !important; /* Резервное пространство */
-        overflow: auto !important;
-    }
-    
-    .content-wrapper {
-        min-height: calc(100vh - 150px); /* Компенсация для нижней панели */
-    }
-}
     /* Общий стиль кнопок */
     .nav-button-1,
     .nav-button-1-2,
