@@ -12,49 +12,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="script.js" defer></script>
     <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const menuSlider = document.querySelector('.menu-slider');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const iframe = document.querySelector('.embedded-page'); // Находим iframe
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuSlider = document.querySelector('.menu-slider');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const iframe = document.querySelector('.embedded-page');
 
-    if (!menuSlider || !mobileMenu) return;
+            if (!menuSlider || !mobileMenu) return;
 
-    function toggleMenu() {
-        mobileMenu.classList.toggle('active');
-        menuSlider.style.display = mobileMenu.classList.contains('active') ? 'none' : 'block';
-    }
+            // Функция для закрытия меню
+            function closeMenu() {
+                mobileMenu.classList.remove('active');
+                menuSlider.style.display = 'block';
+            }
 
-    // Восстановление кнопки при загрузке контента
-    function restoreMenuButton() {
-        if (!mobileMenu.classList.contains('active')) {
-            menuSlider.style.display = 'block';
-        }
-    }
+            // Обработчик клика на кнопку
+            menuSlider.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.add('active');
+                menuSlider.style.display = 'none';
+            });
 
-    // Обработчик клика на кнопку
-    menuSlider.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleMenu();
-    });
+            // Улучшенный обработчик клика по документу
+            document.addEventListener('click', (e) => {
+                const isMenuOpen = mobileMenu.classList.contains('active');
+                const clickedInsideMenu = e.target.closest('.mobile-menu');
+                const clickedOnButton = e.target === menuSlider;
 
-    // Обработчик клика вне меню
-    document.addEventListener('click', (e) => {
-        if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target)) {
-            mobileMenu.classList.remove('active');
-            restoreMenuButton();
-        }
-    });
+                if (isMenuOpen && !clickedInsideMenu && !clickedOnButton) {
+                    closeMenu();
+                }
+            });
 
-    // Обработчик загрузки iframe
-    if (iframe) {
-        iframe.addEventListener('load', () => {
-            restoreMenuButton();
+            // Закрытие по ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+
+            // Обработка переходов через меню
+            document.querySelectorAll('.nav-button-1-2').forEach(button => {
+                button.addEventListener('click', () => {
+                    closeMenu();
+                });
+            });
+
+            // Дополнительная обработка для iframe
+            if (iframe) {
+                iframe.addEventListener('load', () => {
+                    // Добавляем обработчик клика для iframe
+                    iframe.contentWindow.document.addEventListener('click', closeMenu);
+                });
+            }
         });
-    }
-
-    // Инициализация состояния при загрузке
-    restoreMenuButton();
-});
     </script>
 </head>
 
