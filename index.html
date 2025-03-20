@@ -1,42 +1,82 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <?xml version="1.0" encoding="utf-8"?>
     <link rel="icon" type="image/x-icon" href="icon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <title>Рудов Сергей - Психолог-консультант</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="script.js" defer></script>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const menuSlider = document.querySelector('.menu-slider');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const iframe = document.querySelector('.embedded-page'); // Находим iframe
+
+    if (!menuSlider || !mobileMenu) return;
+
+    function toggleMenu() {
+        mobileMenu.classList.toggle('active');
+        menuSlider.style.display = mobileMenu.classList.contains('active') ? 'none' : 'block';
+    }
+
+    // Восстановление кнопки при загрузке контента
+    function restoreMenuButton() {
+        if (!mobileMenu.classList.contains('active')) {
+            menuSlider.style.display = 'block';
+        }
+    }
+
+    // Обработчик клика на кнопку
+    menuSlider.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+    });
+
+    // Обработчик клика вне меню
+    document.addEventListener('click', (e) => {
+        if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target)) {
+            mobileMenu.classList.remove('active');
+            restoreMenuButton();
+        }
+    });
+
+    // Обработчик загрузки iframe
+    if (iframe) {
+        iframe.addEventListener('load', () => {
+            restoreMenuButton();
+        });
+    }
+
+    // Инициализация состояния при загрузке
+    restoreMenuButton();
+});
+    </script>
 </head>
 
 <body>
-    <div class="mobile-controls">
-        <button class="nav-button-1" data-page="prev">
-            <i class="fas fa-chevron-left"></i>
+    <!-- Кнопка-ползунок -->
+    <button class="menu-slider">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Боковое меню -->
+    <div class="mobile-menu">
+        <button class="nav-button-1-2" data-page="page.html">
+            <i class="fas fa-user fa-lg"></i> Профиль
         </button>
-        <button class="nav-button-1" data-page="next">
-            <i class="fas fa-chevron-right"></i>
+        <button class="nav-button-1-2" data-page="page_2.html">
+            <i class="fas fa-book fa-lg"></i> Обо мне
         </button>
-        <button class="mobile-menu-toggle">
-            <i class="fas fa-bars"></i>
+        <button class="nav-button-1-2" data-page="page_3.html">
+            <i class="fas fa-envelope fa-lg"></i> Контакты
         </button>
-        <div class="mobile-menu">
-            <div class="navigation-bar">
-                <button class="nav-button-1-2" data-page="page.html">
-                    <i class="fas fa-user fa-2x"></i>
-                </button>
-                <button class="nav-button-1-2" data-page="page_2.html">
-                    <i class="fas fa-book fa-2x"></i>
-                </button>
-                <button class="nav-button-1-2" data-page="page_3.html">
-                    <i class="fas fa-envelope fa-2x"></i>
-                </button>
-            </div>
-        </div>
     </div>
-    
+
 
     <div class="parallax-background"></div>
     <div class="wireframe">
@@ -55,32 +95,33 @@
                                 <h1 class="name">Рудов Сергей</h1>
                                 <p class="profession">Психолог - консультант</p>
                             </div>
-                             <div class="contact-buttons">
+                            <div class="contact-buttons">
 
                                 <a href="http://wa.me/+79936020203" target="_blank" class="whatsapp-button">
                                     <i class="fab fa-whatsapp"></i>
                                 </a>
-                                <a href="https://www.instagram.com/psycholog_rudov?igsh=c215c3IxaGh3YjZq" target="_blank" class="instagram-button">
+                                <a href="https://www.instagram.com/psycholog_rudov?igsh=c215c3IxaGh3YjZq"
+                                    target="_blank" class="instagram-button">
                                     <i class="fab fa-instagram"></i>
                                 </a>
-                                
+
                                 <a href="https://t.me/Rudov_Sergey" target="_blank" class="telegram-button">
                                     <i class="fab fa-telegram-plane"></i>
                                 </a>
-                                
+
                             </div>
 
                             <div class="button-group">
                                 <a href="https://t.me/Rudov_Sergey" class="btn btn-secondary">Связаться</a>
                             </div>
-                    
+
                             <!-- <footer class="panel-footer">
                                 <p>© 2022 All rights reserved</p>
                             </footer> -->
                         </div>
                     </div>
                     <div class="rectangle-2">
-                        <iframe src="page.html" class="embedded-page" frameborder="0" allowtransparency="true"></iframe>
+                        <iframe src="test.html" class="embedded-page" frameborder="0" allowtransparency="true"></iframe>
                         <div class="gradient-top"></div>
                         <div class="gradient-bottom"></div>
                     </div>
@@ -102,6 +143,7 @@
             </div>
         </div>
     </div>
-    
+
 </body>
+
 </html>
